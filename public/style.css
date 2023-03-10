@@ -1,0 +1,30 @@
+table,
+tr,
+th,
+td{
+    border: thin solid #111;
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
+table{
+    margin: 1rem auto;
+}
+
+th{
+    background-color: grey;
+}
+
+tr:nth-child(odd){
+    background-color: lightgray;
+}
+
+h1{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+}

@@ -6,6 +6,8 @@ const app = express();
 
 app.use("/movies", movieRouter);
 
+app.use(express.static("public"));
+
 app.get("/", (req, res)=> res.redirect("/movies"));
 
 app.listen(8081, () =>{

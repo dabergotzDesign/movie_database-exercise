@@ -1,11 +1,12 @@
 "use strict";
 
 import { Router } from "express";
-import {listAction} from "./controller.js";
+import { listAction, removeAction } from "./controller.js";
 
 const router = Router();
 
 
 router.get("/", listAction);
+router.get("/delete/:id", removeAction);
 
 export {router};
