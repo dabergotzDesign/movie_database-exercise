@@ -4,9 +4,11 @@ import { router as movieRouter } from "./movies/index.js";
 
 const app = express();
 
-app.use("/movies", movieRouter);
 
 app.use(express.static("public"));
+app.use(express.urlencoded({extended: false}));
+
+app.use("/movies", movieRouter);
 
 app.get("/", (req, res)=> res.redirect("/movies"));
 

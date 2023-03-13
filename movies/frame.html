@@ -8,6 +8,26 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- button add new movie -->
+    <div><button type="button" class="addBtn">Add movie</button></div>
     
+<!-- form -->
+<form action="/movies/save" method="post">
+    <input type="hidden" id="id" name="id" value="${movie.id}">
+    <div>
+        <label for="title">Title: </label>
+        <input type="text" id="title" name="title" value="${movie.title}">
+    </div>
+    <div>
+        <label for="year">Year: </label>
+        <input type="text" id="year" name="year" value="${movie.year}">
+    </div> 
+    <div>
+        <button type="submit">Save</button>
+    </div>   
+</form>
+
+
 </body>
 </html>

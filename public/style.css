@@ -1,8 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    position: relative;
+}
+
+.wave{
+    position: absolute;
+    bottom: 0;
+}
+
+
 table,
 tr,
 th,
 td{
-    border: thin solid #111;
+    border: 2px solid #111;
     border-collapse: collapse;
     padding: 1rem;
 }
@@ -27,4 +43,41 @@ a{
     text-decoration: none;
     color: #111;
     font-weight: bold;
+}
+
+.edit{
+    font-size: 1.2rem;
+}
+
+.add-btn{
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    background-color: grey;
+    border-radius: .5rem;
+    border: thick solid #111;
+    padding: 6px;
+}
+
+.addMovieForm{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10%;
+    height: 200px;
+    width: 50%;
+    background-color: grey;
+    border-radius: .5rem;
+}
+
+.addMovieForm input{
+    margin: .5rem;
+}
+
+.addMovieForm button{
+    margin: 1rem;
+    padding: .25rem;
 }

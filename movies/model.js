@@ -4,6 +4,21 @@ let data = [
     {id: 3, title: "Godzilla - King of the Monsters", year: "2019"},
 ];
 
+//id manage
+function getNextId(){
+    return Math.max(...data.map((movie)=> movie.id)) + 1;
+}
+
+function insert(movie){
+    movie.id = getNextId();
+    data.push(movie);
+}
+function update(movie){
+    movie.id = parseInt(movie.id, 10);
+    const index = data.findIndex((item)=>item.id === movie.id);
+    data[index] = movie;
+}
+
 export function getAll(){
     return Promise.resolve(data);
 }
@@ -11,4 +26,17 @@ export function getAll(){
 export function remove(id){
     data = data.filter(movie => movie.id !== id);
         return Promise.resolve();
+}
+
+export function get(id){
+    return Promise.resolve(data.find((movie)=> movie.id === id));
+}
+
+export function save(movie){
+    if(movie.id === ''){
+        insert(movie);
+    }else{
+        update(movie);
+    }
+    return Promise.resolve();
 }
