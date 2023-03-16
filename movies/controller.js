@@ -1,12 +1,9 @@
 "use strict";
 import { getAll, remove, get, save } from "./model.js";
-import { render } from "./view.js";
-import {render as form} from "./form.js";
 
 export async function listAction(req, res){
     const data = await getAll();
-    const body = render(data);
-    res.send(body);
+    res.render("index", {movies: data})
 }
 
 export async function removeAction(req, res){
@@ -17,17 +14,15 @@ export async function removeAction(req, res){
 
 export async function formAction(req, res){
     let movie = {id:"", title:"", year:""};
-
+    
     if(req.params.id){
         movie = await get(parseInt(req.params.id, 10));
     }
-
-    const body = form(movie);
-    res.send(body);
+    res.render("form", {movie: movie})
 }
 
 export async function saveAction(req, res){
-    const movie = {
+    let movie = {
         id: req.body.id,
         title: req.body.title,
         year: req.body.year

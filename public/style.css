@@ -28,7 +28,8 @@ table{
 }
 
 th{
-    background-color: grey;
+    background-color: #305c61;
+    color: whitesmoke;
 }
 
 tr:nth-child(odd){
@@ -37,6 +38,7 @@ tr:nth-child(odd){
 
 h1{
     text-align: center;
+    color: #305c61;
 }
 
 a{
@@ -49,35 +51,53 @@ a{
     font-size: 1.2rem;
 }
 
+.delete{
+    color: red;
+}
+
 .add-btn{
     display: inline-block;
     position: absolute;
     left: 50%;
     text-align: center;
-    background-color: grey;
+    background-color: lightgrey;
+    color: #305c61;
     border-radius: .5rem;
-    border: thick solid #111;
+    border: thick solid #305c61;
     padding: 6px;
 }
 
-.addMovieForm{
+.add-movie-form{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
     margin: auto;
     margin-top: 10%;
-    height: 200px;
-    width: 50%;
+    height: auto;
+    width: 80%;
     background-color: grey;
     border-radius: .5rem;
 }
 
-.addMovieForm input{
-    margin: .5rem;
+.add-movie-form label{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: whitesmoke;
 }
 
-.addMovieForm button{
+.add-movie-form input{
+    margin: .5rem;
+    font-size: 1.4rem;
+    padding: .25rem;
+    width: 100%;
+}
+
+.add-movie-form button{
     margin: 1rem;
     padding: .25rem;
+    font-size: 1.1rem;
+    border: 3px solid #305c61;
+    border-radius: .5rem;
+    color: #305c61;
 }
