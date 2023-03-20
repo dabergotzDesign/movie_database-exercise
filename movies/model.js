@@ -1,74 +1,42 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-/* let data = [
-    {id: 1, title: "Everything, Everywhere, All At Once", year: "2022"},
-    {id: 2, title: "Babylon", year: "2022"},
-    {id: 3, title: "Godzilla - King of the Monsters", year: "2019"},
-]; */
+mongoose.connect("mongodb://127.0.0.1:27017/moviedb", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
-let collection = null;
-
-async function connect(){
-    if(collection){
-        return collection;
-    }
-    const client = new MongoClient("mongodb://127.0.0.1:27017");
-
-    await client.connect();
-
-    const db = client.db("moviedb");
-    collection = db.collection("Movies");
-
-    return collection;
-}
+const Movie = mongoose.model("Movie", {
+    id: Number,
+    title: String,
+    year: Number
+})
 
 //id manage
 
-export async function getAll(){
-    const collection = await connect();
-    const docs = await collection.find({});
-    return docs.toArray();
+export function getAll(){
+    return Movie.find({});
 }
 
-export async function get(id){
-    const collection = await connect();
-    const doc = await collection.findOne({id});
-    return doc;
+export function get(id){
+    return Movie.findOne({ id })
 }
 
 
 export async function remove(id){
-    const collection = await connect();
-    return collection.deleteOne({id});
-}
-
-async function insert(movie){
-    movie.id= Date.now();
-    const collection = await connect();
-    const data = collection.insertOne(movie);
-    return data;
-}
-
-async function update(movie){
-    movie.id = parseInt(movie.id, 10);
-    const collection = await connect();
-    await collection.updateOne({id: movie.id}, {$set: movie});
-    return movie;
+    const movie = await get(id);
+    return movie.deleteOne();
 }
 
 
-
-export function save(movie){
+export async function save(movie){
     if(!movie.id){
-        return insert(movie);
+        const newMovie = new Movie(movie);
+        newMovie.id= Date.now();
+        return newMovie.save();
     }else{
-        return update(movie);
+        const existingMovie = await get(parseInt(movie.id, 10));
+        existingMovie.title = movie.title;
+        existingMovie.year = movie.year;
+        return existingMovie.save();
     }
-
-    /* if(movie.id === ''){
-        insert(movie);
-    }else{
-        update(movie);
-    }
-    return Promise.resolve(); */
 }

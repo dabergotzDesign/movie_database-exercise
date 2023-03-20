@@ -22,11 +22,21 @@ export async function formAction(req, res){
 }
 
 export async function saveAction(req, res){
+
     let movie = {
         id: req.body.id,
         title: req.body.title,
         year: req.body.year
     };
-    await save(movie);
-    res.redirect("/movies");
+    
+
+    //Validation
+    if(req.body.year === NaN){
+       console.log("Year must be a number");
+    }else{
+        await save(movie);
+        res.redirect("/movies");
+    }
+
+    
 }
